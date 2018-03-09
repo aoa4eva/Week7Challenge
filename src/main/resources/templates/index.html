@@ -21,8 +21,10 @@
           <li><a href="index.html">Home</a></li>
           <li><a href="#">About</a></li>
           <li><a href="#">Contact us</a></li>
-          <li><a href="#">Subscribe</a></li>
-          <li><a href="#">Login</a></li>
+          <li ><a href="#">Subscribe</a></li>
+          <li sec:authorize="isAnonymous()"><a href="/login">Login</a></li>
+          <li sec:authorize="isAnonymous()"><a href="/signup">Sign up</a></li>
+          <li sec:authorize="isAuthenticated()"><a href="/logout">Log out</a></li>
         </ul>
       </div>
       <div class="social_plus_search floatright">

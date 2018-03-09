@@ -66,8 +66,10 @@ public class NewsService {
         }
         return theNews;
     }
+
     public ArrayList <MyNewsDisplay> getUserNewsDisplay(Authentication auth)
     {
+        System.out.println(auth.getName());
         ArrayList<MyNewsDisplay> myDisplay = new ArrayList<>();
 
         AppUser thisUser = userRepo.findByUsername(auth.getName());
@@ -80,6 +82,25 @@ public class NewsService {
         }
         return myDisplay;
     }
+
+
+    public ArrayList <MyNewsDisplay> getUserTopicDisplay(Authentication auth)
+    {
+        System.out.println(auth.getName());
+        ArrayList<MyNewsDisplay> myDisplay = new ArrayList<>();
+
+        AppUser thisUser = userRepo.findByUsername(auth.getName());
+        for(String eachTopic:thisUser.getTopics())
+        {
+            MyNewsDisplay newItem = new MyNewsDisplay();
+            newItem.setCategorisedNews(getTopicNews(eachTopic));
+            newItem.setCategory(eachTopic);
+            myDisplay.add(newItem);
+        }
+        return myDisplay;
+    }
+
+
 
 
 

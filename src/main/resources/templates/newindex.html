@@ -21,9 +21,11 @@
           <li><a href="index.html">Home</a></li>
           <li><a href="#">About</a></li>
           <li><a href="#">Contact us</a></li>
-          <li><a href="#">Subscribe</a></li>
-          <li sec:authorize="isAnonymous()"><a href="#">Login</a></li>
-            <li sec:authorize="isAuthenticated()"><a sec:authentication="name" href="#"></a></li>
+          <li ><a href="#">Subscribe</a></li>
+          <li sec:authorize="isAnonymous()"><a href="/signup">Sign up</a></li>
+          <li sec:authorize="isAuthenticated()"><a href="/logout">Log out</a></li>
+          <li sec:authorize="isAnonymous()"><a href="/login">Login</a></li>
+          <li sec:authorize="isAuthenticated()"><a sec:authentication="name" href="/myprofile"></a></li>
         </ul>
       </div>
       <div class="social_plus_search floatright">
@@ -160,6 +162,9 @@
           <div class="single_left_coloum_wrapper gallery">
             <h2 class="title">gallery</h2>
             <a class="more" href="#">more</a> <img src="images/single_featured.png" alt="" /> <img src="images/single_featured.png" alt="" /> <img src="images/single_featured.png" alt="" /> <img src="images/single_featured.png" alt="" /> <img src="images/single_featured.png" alt="" /> <img src="images/single_featured.png" alt="" /> </div>
+
+
+
           <div class="single_left_coloum_wrapper single_cat_left" >
             <h2 class="title">Technology News</h2>
             <a class="more" href="#">more</a>

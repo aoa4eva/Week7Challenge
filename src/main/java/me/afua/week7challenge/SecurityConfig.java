@@ -22,7 +22,6 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
     }
 
     @Autowired
-
     AppUserRepository userRepository;
 
     @Override
@@ -32,7 +31,6 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
     @Override
     protected void configure(AuthenticationManagerBuilder auth) throws Exception {
-
         PasswordEncoder pE = passwordEncoder();
         auth.inMemoryAuthentication().withUser("username").password(pE.encode("password")).authorities("USER")
                 .and().withUser("admin").password(pE.encode("password")).authorities("ADMIN");
@@ -42,9 +40,11 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
     @Override
     protected void configure(HttpSecurity http) throws Exception {
         http.authorizeRequests()
-                .antMatchers("/","/adduseranditems","/myprofile","/signup","/**").permitAll()
+                .antMatchers("/","/adduseranditems","/myprofile","/signup","/**","/addcategory").permitAll()
                 .anyRequest().authenticated()
                 .and().formLogin().permitAll()
                 .and().logout().logoutSuccessUrl("/login").logoutRequestMatcher(new AntPathRequestMatcher("/logout"));
     }
+
+
 }

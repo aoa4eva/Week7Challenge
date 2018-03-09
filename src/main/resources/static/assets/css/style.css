@@ -18,7 +18,7 @@ input[type=submit]
 h1, h2, h4, h5, h6{font-weight:normal; margin:0 0 15px}
 h3{color:#202021; font-size:12px; font-weight:bold; margin-bottom:2px; line-height:13px}
 h2{font-size:25px; line-height:30px}
-img{max-width:100%; height:auto}
+img{max-width:143px; max-height:80px}
 .alignleft{float:left; margin-left:0px}
 .aligncenter{display:block; margin:10px auto}
 .alignright{float:right; margin-left:10px}

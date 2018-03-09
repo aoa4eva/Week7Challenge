@@ -43,11 +43,15 @@ public class AppUser {
     public AppUser() {
         this.roles = new HashSet<>();
         encoder = passwordEncoder();
+        this.categories = new ArrayList<>();
+        this.topics = new ArrayList<>();
     }
 
     public AppUser(String username, String password, AppRole role) {
         this.username = username;
         this.roles = new HashSet<>();
+        this.categories = new ArrayList<>();
+        this.topics = new ArrayList<>();
         addRole(role);
         encoder = passwordEncoder();
         setPassword(password);
@@ -122,5 +126,19 @@ public class AppUser {
 
     public void setEncoder(PasswordEncoder encoder) {
         this.encoder = encoder;
+    }
+
+    @Override
+    public String toString() {
+        return "AppUser{" +
+                "id=" + id +
+                ", username='" + username + '\'' +
+                ", password='" + password + '\'' +
+                ", displayName='" + displayName + '\'' +
+                ", categories=" + categories +
+                ", topics=" + topics +
+                ", roles=" + roles +
+                ", encoder=" + encoder +
+                '}';
     }
 }

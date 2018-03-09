@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity4">
+<head>
+    <meta charset="UTF-8"/>
+    <title>Title</title>
+</head>
+<body>
+<h1>Add Topic</h1>
+<form th:action="@{/addcategory}" th:object="${user}" method="post">
+    <input type="hidden" th:field="*{id}">
+    <input type="hidden" th:field="*{username}">
+    <input type="hidden" th:field="*{password}">
+    <input type="hidden" th:field="*{categories}">
+    <input type="hidden" th:field="*{topics}">
+    <span th:if="${#fields.hasErrors('topics')}" th:errors="*{topics}"></span>
+    <input type="text" name="addtopic"/>
+    <input type="submit" value="Save">
+</form>
+</body>
+</html>
