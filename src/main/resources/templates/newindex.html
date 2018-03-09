@@ -4,25 +4,26 @@
 <title>The News Reporter</title>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-<link rel="stylesheet" type="text/css" href="/assets/font/font-awesome.min.css" />
-<link rel="stylesheet" type="text/css" href="/assets/font/font.css" />
-<link rel="stylesheet" type="text/css" href="/assets/css/bootstrap.min.css" media="screen" />
-<link rel="stylesheet" type="text/css" href="/assets/css/style.css" media="screen" />
-<link rel="stylesheet" type="text/css" href="/assets/css/responsive.css" media="screen" />
-<link rel="stylesheet" type="text/css" href="/assets/css/jquery.bxslider.css" media="screen" />
+<link rel="stylesheet" type="text/css" href="assets/font/font-awesome.min.css" />
+<link rel="stylesheet" type="text/css" href="assets/font/font.css" />
+<link rel="stylesheet" type="text/css" href="assets/css/bootstrap.min.css" media="screen" />
+<link rel="stylesheet" type="text/css" href="assets/css/style.css" media="screen" />
+<link rel="stylesheet" type="text/css" href="assets/css/responsive.css" media="screen" />
+<link rel="stylesheet" type="text/css" href="assets/css/jquery.bxslider.css" media="screen" />
 </head>
 <body>
 <div class="body_wrapper">
   <div class="center">
     <div class="header_area">
-      <div class="logo floatleft"><a href="#"><img src="/assets/images/logo.png" alt="" /></a></div>
+      <div class="logo floatleft"><a href="#"><img src="images/logo.png" alt="" /></a></div>
       <div class="top_menu floatleft">
         <ul>
           <li><a href="index.html">Home</a></li>
           <li><a href="#">About</a></li>
           <li><a href="#">Contact us</a></li>
           <li><a href="#">Subscribe</a></li>
-          <li><a href="#">Login</a></li>
+          <li sec:authorize="isAnonymous()"><a href="#">Login</a></li>
+            <li sec:authorize="isAuthenticated()"><a sec:authentication="name" href="#"></a></li>
         </ul>
       </div>
       <div class="social_plus_search floatright">
@@ -44,7 +45,7 @@
     </div>
     <div class="main_menu_area">
       <ul id="nav">
-        <li><a href="#">world news</a>
+        <li><a href="#">General</a>
           <ul>
             <li><a href="#">Single item</a></li>
             <li><a href="#">Single item</a></li>
@@ -61,7 +62,7 @@
             <li><a href="#">Single item</a></li>
           </ul>
         </li>
-        <li><a href="#">sports</a></li>
+        <li><a href="#">Sports</a></li>
         <li><a href="#">tech</a>
           <ul>
             <li><a href="#">Single item</a></li>
@@ -71,8 +72,8 @@
             <li><a href="#">Single item</a></li>
           </ul>
         </li>
-        <li><a href="#">business</a></li>
-        <li><a href="#">Movies</a>
+        <li><a href="#">Business</a></li>
+        <li><a href="#">Entertainment</a>
           <ul>
             <li><a href="#">Single item</a></li>
             <li><a href="#">Single item</a></li>
@@ -101,43 +102,89 @@
           </ul>
         </li>
         <li><a href="#">classifieds</a></li>
-        <li><a href="#">blogs</a></li>
       </ul>
     </div>
-    <div class="slider_area">
-      <div class="slider">
-        <ul class="bxslider">
-          <li><img src="/assets/images/1.jpg" alt="" title="Slider caption text" /></li>
-          <li><img src="/assets/images/2.jpg" alt="" title="Slider caption text" /></li>
-          <li><img src="/assets/images/3.jpg" alt="" title="Slider caption text" /></li>
-        </ul>
-      </div>
-    </div>
+    <!--<div class="slider_area">-->
+      <!--<div class="slider">-->
+        <!--<ul class="bxslider">-->
+          <!--<li><img src="images/1.jpg" alt="" title="Slider caption text" /></li>-->
+          <!--<li><img src="images/2.jpg" alt="" title="Slider caption text" /></li>-->
+          <!--<li><img src="images/3.jpg" alt="" title="Slider caption text" /></li>-->
+        <!--</ul>-->
+      <!--</div>-->
+    <!--</div>-->
     <div class="content_area">
       <div class="main_content floatleft">
         <div class="left_coloum floatleft">
-
-
           <div class="single_left_coloum_wrapper">
             <h2 class="title">from   around   the   world</h2>
             <a class="more" href="#">more</a>
-            <!--<div class="single_left_coloum floatleft" th:each="eachStory:${topstories.articles}" > <img th:src="${eachStory.urlToImage}" alt="" />-->
-              <!--<h3 th:text="${eachStory.title}"></h3>-->
-              <!--&lt;!&ndash;<p th:text="${#strings.abbreviate(eachStory.description,90)}"></p>&ndash;&gt;-->
-             <!--<a class="readmore" th:href="${url}">Read more</a>-->
-          <!--</div>-->
 
+            <div th:each="eachStory:${topstories.articles}" class="single_left_coloum floatleft">
+              <img th:src="${eachStory.urlToImage}" alt="" />
+              <h3 th:text="${eachStory.title}">Lorem ipsum dolor sit amet, consectetur</h3>
+              <p th:text="${#strings.abbreviate(eachStory.description,50)}"></p>
+              <a class="readmore" th:href="${eachStory.url}">read more</a>
+            </div>
 
-
-
-          <div  th:each="eachStory:${topstories.articles}" class="single_left_coloum floatleft"> <img th:src="${eachStory.urlToImage}" th:alt="${eachStory.title}" />
-            <h3 th:text="${eachStory.title}"></h3>
-            <p th:text="${#strings.abbreviate(eachStory.description,90)}"></p>
-            <a class="readmore" href="#">read more</a>
+       <!--     <div class="single_left_coloum floatleft"> <img src="images/single_featured.png" alt="" />
+              <h3>Lorem ipsum dolor sit amet, consectetur</h3>
+              <p>Nulla quis lorem neque, mattis venenatis lectus. In interdum ullamcorper
+                dolor eu mattis.</p>
+              <a class="readmore" href="#">read more</a> </div>
+            <div class="single_left_coloum floatleft"> <img src="images/single_featured.png" alt="" />
+              <h3>Lorem ipsum dolor sit amet, consectetur</h3>
+              <p>Nulla quis lorem neque, mattis venenatis lectus. In interdum ullamcorper
+                dolor eu mattis.</p>
+              <a class="readmore" href="#">read more</a> </div>
           </div>
-
+          <div class="single_left_coloum_wrapper">
+            <h2 class="title">latest  articles</h2>
+            <a class="more" href="#">more</a>
+            <div class="single_left_coloum floatleft"> <img src="images/single_featured.png" alt="" />
+              <h3>Lorem ipsum dolor sit amet, consectetur</h3>
+              <p>Nulla quis lorem neque, mattis venenatis lectus. In interdum ullamcorper
+                dolor eu mattis.</p>
+              <a class="readmore" href="#">read more</a> </div>
+            <div class="single_left_coloum floatleft"> <img src="images/single_featured.png" alt="" />
+              <h3>Lorem ipsum dolor sit amet, consectetur</h3>
+              <p>Nulla quis lorem neque, mattis venenatis lectus. In interdum ullamcorper
+                dolor eu mattis.</p>
+              <a class="readmore" href="#">read more</a> </div>
+            <div class="single_left_coloum floatleft"> <img src="images/single_featured.png" alt="" />
+              <h3>Lorem ipsum dolor sit amet, consectetur</h3>
+              <p>Nulla quis lorem neque, mattis venenatis lectus. In interdum ullamcorper
+                dolor eu mattis.</p>
+              <a class="readmore" href="#">read more</a> </div>-->
           </div>
-        <div class="right_coloum floatright">
+          <div class="single_left_coloum_wrapper gallery">
+            <h2 class="title">gallery</h2>
+            <a class="more" href="#">more</a> <img src="images/single_featured.png" alt="" /> <img src="images/single_featured.png" alt="" /> <img src="images/single_featured.png" alt="" /> <img src="images/single_featured.png" alt="" /> <img src="images/single_featured.png" alt="" /> <img src="images/single_featured.png" alt="" /> </div>
+          <div class="single_left_coloum_wrapper single_cat_left" >
+            <h2 class="title">Technology News</h2>
+            <a class="more" href="#">more</a>
+            <div class="single_cat_left_content floatleft" th:each="techStory:${techstories}">
+              <h3 th:text="${techStory.title}">Lorem ipsum dolor sit amet conse ctetur adipiscing elit </h3>
+              <p th:text="${techStory.description}">Nulla quis lorem neque, mattis venenatis lectus. In interdum ullamcorper dolor ...interdum</p>
+            </div>
+            <div class="single_cat_left_content floatleft">
+              <h3>Lorem ipsum dolor sit amet conse ctetur adipiscing elit </h3>
+              <p>Nulla quis lorem neque, mattis venenatis lectus. In interdum ullamcorper dolor ...interdum</p>
+              <p class="single_cat_left_content_meta">by <span>John Doe</span> |  29 comments</p>
+            </div>
+            <div class="single_cat_left_content floatleft">
+              <h3>Lorem ipsum dolor sit amet conse ctetur adipiscing elit </h3>
+              <p>Nulla quis lorem neque, mattis venenatis lectus. In interdum ullamcorper dolor ...interdum</p>
+              <p class="single_cat_left_content_meta">by <span>John Doe</span> |  29 comments</p>
+            </div>
+            <div class="single_cat_left_content floatleft">
+              <h3>Lorem ipsum dolor sit amet conse ctetur adipiscing elit </h3>
+              <p>Nulla quis lorem neque, mattis venenatis lectus. In interdum ullamcorper dolor ...interdum</p>
+              <p class="single_cat_left_content_meta">by <span>John Doe</span> |  29 comments</p>
+            </div>
+          </div>
+        </div>
+    <!--    <div class="right_coloum floatright">
           <div class="single_right_coloum">
             <h2 class="title">from the desk</h2>
             <ul>
@@ -166,23 +213,23 @@
             <a class="popular_more" href="#">more</a> </div>
           <div class="single_right_coloum">
             <h2 class="title">editorial</h2>
-            <div class="single_cat_right_content editorial"> <img src="/assets/images/editorial_img.png" alt="" />
+            <div class="single_cat_right_content editorial"> <img src="images/editorial_img.png" alt="" />
               <h3>Lorem ipsum dolor sit amet con se cte tur adipiscing elit</h3>
             </div>
-            <div class="single_cat_right_content editorial"> <img src="/assets/images/editorial_img.png" alt="" />
+            <div class="single_cat_right_content editorial"> <img src="images/editorial_img.png" alt="" />
               <h3>Lorem ipsum dolor sit amet con se cte tur adipiscing elit</h3>
             </div>
-            <div class="single_cat_right_content editorial"> <img src="/assets/images/editorial_img.png" alt="" />
+            <div class="single_cat_right_content editorial"> <img src="images/editorial_img.png" alt="" />
               <h3>Lorem ipsum dolor sit amet con se cte tur adipiscing elit</h3>
             </div>
-            <div class="single_cat_right_content editorial"> <img src="/assets/images/editorial_img.png" alt="" />
+            <div class="single_cat_right_content editorial"> <img src="images/editorial_img.png" alt="" />
               <h3>Lorem ipsum dolor sit amet con se cte tur adipiscing elit</h3>
             </div>
           </div>
-        </div>
+        </div>-->
       </div>
       <div class="sidebar floatright">
-        <div class="single_sidebar"> <img src="/assets/images/add1.png" alt="" /> </div>
+        <div class="single_sidebar"> <img src="images/add1.png" alt="" /> </div>
         <div class="single_sidebar">
           <div class="news-letter">
             <h2>Sign Up for Newsletter</h2>
@@ -232,14 +279,14 @@
             </ul>
             <a class="popular_more">more</a> </div>
         </div>
-        <div class="single_sidebar"> <img src="/assets/images/add1.png" alt="" /> </div>
+        <div class="single_sidebar"> <img src="images/add1.png" alt="" /> </div>
         <div class="single_sidebar">
           <h2 class="title">ADD</h2>
-          <img src="/assets/images/add2.png" alt="" /> </div>
+          <img src="images/add2.png" alt="" /> </div>
       </div>
     </div>
     <div class="footer_top_area">
-      <div class="inner_footer_top"> <img src="/assets/images/add3.png" alt="" /> </div>
+      <div class="inner_footer_top"> <img src="images/add3.png" alt="" /> </div>
     </div>
     <div class="footer_bottom_area">
       <div class="footer_menu">
@@ -260,10 +307,10 @@
     </div>
   </div>
 </div>
-<script type="text/javascript" src="/assets/js/jquery-min.js"></script>
-<script type="text/javascript" src="/assets/js/bootstrap.min.js"></script>
-<script type="text/javascript" src="/assets/js/jquery.bxslider.js"></script>
-<script type="text/javascript" src="/assets/js/selectnav.min.js"></script>
+<script type="text/javascript" src="assets/js/jquery-min.js"></script> 
+<script type="text/javascript" src="assets/js/bootstrap.min.js"></script> 
+<script type="text/javascript" src="assets/js/jquery.bxslider.js"></script> 
+<script type="text/javascript" src="assets/js/selectnav.min.js"></script> 
 <script type="text/javascript">
 selectnav('nav', {
     label: '-Navigation-',

@@ -20,4 +20,11 @@ public class News {
     public void setArticles(ArrayList<Article> articles) {
         this.articles = articles;
     }
+
+    @Override
+    public String toString() {
+        return "News{" +
+                "articles=" + articles +
+                '}';
+    }
 }

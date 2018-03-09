@@ -1,41 +1,70 @@
 package me.afua.week7challenge;
 
-import org.springframework.http.converter.json.Jackson2ObjectMapperBuilder;
-import org.springframework.http.converter.xml.MappingJackson2XmlHttpMessageConverter;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.Authentication;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.client.RestTemplate;
 
-;
+import java.util.ArrayList;
 
 @Controller
 public class MainController {
+    @Autowired
+    NewsService theWire;
+
+    @Autowired
+    AppUserRepository appUserRepository;
+
+    @Autowired
+    AppRoleRepository roleRepo;
+
+
     @RequestMapping("/")
-    public @ResponseBody  String showIndex()
+    public String showIndex(Model model, Authentication auth)
     {
         RestTemplate restTemplate = new RestTemplate();
-        News theNews = restTemplate.getForObject("https://newsapi.org/v2/top-headlines?q=bitcoin&apiKey=7950f30c312945d8856e4dcc09aec04b",News.class);
-        for(Article eachArticle:theNews.getArticles())
+        System.out.println("Top General Stories"+theWire.getStories("top-headlines","general").toString());
+        model.addAttribute("topstories",theWire.getStories("top-headlines","general"));
+
+        if(auth!=null)
         {
-            System.out.println(eachArticle.getDescription());
+            model.addAttribute("myNews",theWire.getUserNewsDisplay(auth));
+            System.out.println(theWire.getUserNewsDisplay(auth).toString());
         }
-
-        //Jackson
-        Jackson2ObjectMapperBuilder builder = Jackson2ObjectMapperBuilder.xml();
-        builder.indentOutput(true);
-        restTemplate.getMessageConverters().add(new MappingJackson2XmlHttpMessageConverter(builder.build()));
-
-
-        JoyNews joy = restTemplate.getForObject("http://www.myjoyonline.com/pages/rss/site_edition.xml",JoyNews.class);
-
-        System.out.println("Joy is:"+joy+" with "+joy.getChannel().toString());
-        for(NewsItem eachItem: joy.getChannel().getItems())
-        {
-            System.out.println("This item has been shown:");
-            System.out.println(eachItem.getTitle());
-        }
-        return "The news has been retrieved";
+        return "newindex";
     }
+
+    @RequestMapping("/signup")
+    public String signup(Model model)
+    {
+        model.addAttribute("thisUser",new AppUser());
+        return "signup";
+    }
+
+    @RequestMapping("/myprofile")
+    public String myProfile(Model model)
+    {
+        AppUser theUser = appUserRepository.findById(new Long (1)).get();
+        model.addAttribute("thisUser",theUser);
+        return "userprofile";
+    }
+
+
+    @PostMapping("/register")
+    public String registerUser(@ModelAttribute("thisUser") AppUser thisUser, BindingResult result)
+    {
+        ArrayList<String> userCategories = new ArrayList<>();
+        userCategories.add("business");
+        userCategories.add("health");
+        thisUser.setCategories(userCategories);
+        appUserRepository.save(thisUser);
+        thisUser.addRole(roleRepo.findAppRoleByRoleName("USER"));
+        return "redirect:/";
+    }
+
+
 
 }
