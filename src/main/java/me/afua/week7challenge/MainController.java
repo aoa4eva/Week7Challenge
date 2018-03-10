@@ -122,7 +122,7 @@ public class MainController {
         return "redirect:/login";
     }
 
-    @GetMapping("/delete/{category}")
+    @GetMapping("/delete/category/{category}")
     public String deleteCategory(@PathVariable("category") String category, Authentication auth)
     {
         AppUser thisUser = appUserRepository.findByUsername(auth.getName());
@@ -131,7 +131,7 @@ public class MainController {
         return "redirect:/myprofile";
     }
 
-    @GetMapping("/delete/{topic}")
+    @GetMapping("/delete/topic/{topic}")
     public String deleteTopic(@PathVariable("topic") String topic, Authentication auth)
     {
         AppUser thisUser = appUserRepository.findByUsername(auth.getName());

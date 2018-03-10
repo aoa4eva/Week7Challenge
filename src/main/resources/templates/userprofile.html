@@ -14,16 +14,16 @@
 </head>
 <body>
 
-    <h1>Categories</h1>
+<h1>Categories</h1><a href="/addcategory">Add</a>
     <div th:each="eachCategory:${thisUser.categories}">
 
-       <h1> <span class="badge badge-pill redred" th:inline="text">[[${eachCategory}]]<a th:href="@{/delete/{category}(category=${eachCategory})}">X</a></span></h1>
+       <h1> <span class="badge badge-pill redred" th:inline="text">[[${eachCategory}]]<a th:href="@{/delete/category/{category}(category=${eachCategory})}">X</a></span></h1>
     </div>
 
-    <h1>Topics</h1>
+    <h1>Topics</h1><a href="/addtopic">Add</a>
     <div th:each="eachTopic:${thisUser.topics}">
 
-        <h1> <span class="badge badge-pill redred" th:inline="text">[[${eachTopic}]]<a th:href="@{/delete/{topic}(topic=${eachTopic})}">X</a></span></h1>
+        <h1> <span class="badge badge-pill redred" th:inline="text">[[${eachTopic}]]<a th:href="@{/delete/topic/{topic}(topic=${eachTopic})}">X</a></span></h1>
     </div>
     <script src="https://code.jquery.com/jquery-3.1.1.slim.min.js" integrity="sha384-A7FZj7v+d/sdmMqp/nOQwliLvUsJfDHW+k9Omg/a/EheAdgtzNs3hpfag6Ed950n" crossorigin="anonymous"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/tether/1.4.0/js/tether.min.js" integrity="sha384-DztdAPBWPRXSA/3eYEEUWrWCy7G5KFbe8fFjk5JAIxUYHKkDx6Qin1DkWx51bBrb" crossorigin="anonymous"></script>

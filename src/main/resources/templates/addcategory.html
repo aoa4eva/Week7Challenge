@@ -1,10 +1,19 @@
-<!DOCTYPE html>
-<html lang="en" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity4">
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"  xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity4">
 <head>
-    <meta charset="UTF-8"/>
-    <title>Title</title>
+    <title>The News Reporter</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" type="text/css" href="assets/font/font-awesome.min.css" />
+    <link rel="stylesheet" type="text/css" href="assets/font/font.css" />
+    <link rel="stylesheet" type="text/css" href="assets/css/bootstrap.min.css" media="screen" />
+    <link rel="stylesheet" type="text/css" href="assets/css/style.css" media="screen" />
+    <link rel="stylesheet" type="text/css" href="assets/css/responsive.css" media="screen" />
+    <link rel="stylesheet" type="text/css" href="assets/css/jquery.bxslider.css" media="screen" />
+    <title>Add Category</title>
 </head>
 <body>
+<h1>Add Category</h1>
     <form th:action="@{/addcategory}" th:object="${user}" method="post">
             <input type="hidden" th:field="*{id}">
         <input type="hidden" th:field="*{username}">

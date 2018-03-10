@@ -28,93 +28,9 @@
           <li sec:authorize="isAuthenticated()"><a sec:authentication="name" href="/myprofile"></a></li>
         </ul>
       </div>
-      <div class="social_plus_search floatright">
-        <div class="social">
-          <ul>
-            <li><a href="#" class="twitter"></a></li>
-            <li><a href="#" class="facebook"></a></li>
-            <li><a href="#" class="feed"></a></li>
-          </ul>
-        </div>
-        <div class="search">
-          <form action="#" method="post" id="search_form">
-            <input type="text" value="Search news" id="s" />
-            <input type="submit" id="searchform" value="search" />
-            <input type="hidden" value="post" name="post_type" />
-          </form>
-        </div>
-      </div>
     </div>
-    <div class="main_menu_area">
-      <ul id="nav">
-        <li><a href="#">General</a>
-          <ul>
-            <li><a href="#">Single item</a></li>
-            <li><a href="#">Single item</a></li>
-            <li><a href="#">Single item</a>
-              <ul>
-                <li><a href="#">Single item</a></li>
-                <li><a href="#">Single item</a></li>
-                <li><a href="#">Single item</a></li>
-                <li><a href="#">Single item</a></li>
-                <li><a href="#">Single item</a></li>
-              </ul>
-            </li>
-            <li><a href="#">Single item</a></li>
-            <li><a href="#">Single item</a></li>
-          </ul>
-        </li>
-        <li><a href="#">Sports</a></li>
-        <li><a href="#">tech</a>
-          <ul>
-            <li><a href="#">Single item</a></li>
-            <li><a href="#">Single item</a></li>
-            <li><a href="#">Single item</a></li>
-            <li><a href="#">Single item</a></li>
-            <li><a href="#">Single item</a></li>
-          </ul>
-        </li>
-        <li><a href="#">Business</a></li>
-        <li><a href="#">Entertainment</a>
-          <ul>
-            <li><a href="#">Single item</a></li>
-            <li><a href="#">Single item</a></li>
-            <li><a href="#">Single item</a>
-              <ul>
-                <li><a href="#">Single item</a></li>
-                <li><a href="#">Single item</a></li>
-                <li><a href="#">Single item</a></li>
-                <li><a href="#">Single item</a></li>
-                <li><a href="#">Single item</a></li>
-              </ul>
-            </li>
-            <li><a href="#">Single item</a></li>
-            <li><a href="#">Single item</a></li>
-          </ul>
-        </li>
-        <li><a href="#">entertainment</a></li>
-        <li><a href="#">culture</a></li>
-        <li><a href="#">Books</a>
-          <ul>
-            <li><a href="#">Single item</a></li>
-            <li><a href="#">Single item</a></li>
-            <li><a href="#">Single item</a></li>
-            <li><a href="#">Single item</a></li>
-            <li><a href="#">Single item</a></li>
-          </ul>
-        </li>
-        <li><a href="#">classifieds</a></li>
-      </ul>
-    </div>
-    <!--<div class="slider_area">-->
-      <!--<div class="slider">-->
-        <!--<ul class="bxslider">-->
-          <!--<li><img src="images/1.jpg" alt="" title="Slider caption text" /></li>-->
-          <!--<li><img src="images/2.jpg" alt="" title="Slider caption text" /></li>-->
-          <!--<li><img src="images/3.jpg" alt="" title="Slider caption text" /></li>-->
-        <!--</ul>-->
-      <!--</div>-->
     <!--</div>-->
+
     <div class="content_area">
       <div class="main_content floatleft">
         <div class="left_coloum floatleft">
@@ -128,36 +44,6 @@
               <p th:text="${#strings.abbreviate(eachStory.description,50)}"></p>
               <a class="readmore" th:href="${eachStory.url}">read more</a>
             </div>
-
-       <!--     <div class="single_left_coloum floatleft"> <img src="images/single_featured.png" alt="" />
-              <h3>Lorem ipsum dolor sit amet, consectetur</h3>
-              <p>Nulla quis lorem neque, mattis venenatis lectus. In interdum ullamcorper
-                dolor eu mattis.</p>
-              <a class="readmore" href="#">read more</a> </div>
-            <div class="single_left_coloum floatleft"> <img src="images/single_featured.png" alt="" />
-              <h3>Lorem ipsum dolor sit amet, consectetur</h3>
-              <p>Nulla quis lorem neque, mattis venenatis lectus. In interdum ullamcorper
-                dolor eu mattis.</p>
-              <a class="readmore" href="#">read more</a> </div>
-          </div>
-          <div class="single_left_coloum_wrapper">
-            <h2 class="title">latest  articles</h2>
-            <a class="more" href="#">more</a>
-            <div class="single_left_coloum floatleft"> <img src="images/single_featured.png" alt="" />
-              <h3>Lorem ipsum dolor sit amet, consectetur</h3>
-              <p>Nulla quis lorem neque, mattis venenatis lectus. In interdum ullamcorper
-                dolor eu mattis.</p>
-              <a class="readmore" href="#">read more</a> </div>
-            <div class="single_left_coloum floatleft"> <img src="images/single_featured.png" alt="" />
-              <h3>Lorem ipsum dolor sit amet, consectetur</h3>
-              <p>Nulla quis lorem neque, mattis venenatis lectus. In interdum ullamcorper
-                dolor eu mattis.</p>
-              <a class="readmore" href="#">read more</a> </div>
-            <div class="single_left_coloum floatleft"> <img src="images/single_featured.png" alt="" />
-              <h3>Lorem ipsum dolor sit amet, consectetur</h3>
-              <p>Nulla quis lorem neque, mattis venenatis lectus. In interdum ullamcorper
-                dolor eu mattis.</p>
-              <a class="readmore" href="#">read more</a> </div>-->
           </div>
           <div class="single_left_coloum_wrapper gallery">
             <h2 class="title">gallery</h2>
@@ -189,51 +75,8 @@
             </div>
           </div>
         </div>
-    <!--    <div class="right_coloum floatright">
-          <div class="single_right_coloum">
-            <h2 class="title">from the desk</h2>
-            <ul>
-              <li>
-                <div class="single_cat_right_content">
-                  <h3>Lorem ipsum dolor sit amet conse ctetur adipiscing elit</h3>
-                  <p>Nulla quis lorem neque, mattis venen atis lectus. In interdum ull amcorper dolor eu mattis.</p>
-                  <p class="single_cat_right_content_meta"><a href="#"><span>read more</span></a> 3 hours ago</p>
-                </div>
-              </li>
-              <li>
-                <div class="single_cat_right_content">
-                  <h3>Lorem ipsum dolor sit amet conse ctetur adipiscing elit</h3>
-                  <p>Nulla quis lorem neque, mattis venen atis lectus. In interdum ull amcorper dolor eu mattis.</p>
-                  <p class="single_cat_right_content_meta"><a href="#"><span>read more</span></a> 3 hours ago</p>
-                </div>
-              </li>
-              <li>
-                <div class="single_cat_right_content">
-                  <h3>Lorem ipsum dolor sit amet conse ctetur adipiscing elit</h3>
-                  <p>Nulla quis lorem neque, mattis venen atis lectus. In interdum ull amcorper dolor eu mattis.</p>
-                  <p class="single_cat_right_content_meta"><a href="#"><span>read more</span></a> 3 hours ago</p>
-                </div>
-              </li>
-            </ul>
-            <a class="popular_more" href="#">more</a> </div>
-          <div class="single_right_coloum">
-            <h2 class="title">editorial</h2>
-            <div class="single_cat_right_content editorial"> <img src="images/editorial_img.png" alt="" />
-              <h3>Lorem ipsum dolor sit amet con se cte tur adipiscing elit</h3>
-            </div>
-            <div class="single_cat_right_content editorial"> <img src="images/editorial_img.png" alt="" />
-              <h3>Lorem ipsum dolor sit amet con se cte tur adipiscing elit</h3>
-            </div>
-            <div class="single_cat_right_content editorial"> <img src="images/editorial_img.png" alt="" />
-              <h3>Lorem ipsum dolor sit amet con se cte tur adipiscing elit</h3>
-            </div>
-            <div class="single_cat_right_content editorial"> <img src="images/editorial_img.png" alt="" />
-              <h3>Lorem ipsum dolor sit amet con se cte tur adipiscing elit</h3>
-            </div>
-          </div>
-        </div>-->
       </div>
-      <div class="sidebar floatright">
+      <div class="sidebar floatright" >
         <div class="single_sidebar"> <img src="images/add1.png" alt="" /> </div>
         <div class="single_sidebar">
           <div class="news-letter">
