@@ -46,7 +46,7 @@ public class NewsService {
 
     public News getStories(String from, String category)
     {
-        return getStories(from,category,6);
+        return getStories(from,category,8);
     }
 
     public News getTopStories()

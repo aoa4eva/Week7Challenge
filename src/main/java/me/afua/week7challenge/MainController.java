@@ -89,7 +89,6 @@ public class MainController {
     @PostMapping("/addcategory")
     public String saveCategory(@ModelAttribute("user") AppUser thisUser, HttpServletRequest request, BindingResult result, Model model, Authentication auth)
     {
-        Authentication saveThis = auth;
         System.out.println(auth.getName());
         String toAdd = request.getParameter("addcategory");
         thisUser.getCategories().add(toAdd);
@@ -97,7 +96,7 @@ public class MainController {
         appUserRepository.save(thisUser);
         System.out.println(thisUser);
 
-        return "redirect:/login";
+        return "redirect:/myprofile";
     }
 
     @GetMapping("/addtopic")
@@ -119,7 +118,7 @@ public class MainController {
         appUserRepository.save(thisUser);
         System.out.println(thisUser);
 
-        return "redirect:/login";
+        return "redirect:/myprofile";
     }
 
     @GetMapping("/delete/category/{category}")
