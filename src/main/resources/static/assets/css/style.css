@@ -129,5 +129,6 @@ div{overflow:hidden}
 .footer_menu ul li a{display:inline-block; padding:0 22px}
 .footer_menu ul li a:hover{}
 .copyright_text{line-height:17px; text-align:center}
-.redred{color:white; background-color:red; font-size:20px;}
-.redred a{color:white; font-size: 30px;}
+.redred{color:white; background-color:red; font-size:20px; border-radius:5%;}
+.allblack{background-color: black;color:white;}
+.whiteout{color:white;}

@@ -15,10 +15,15 @@
 <body>
 
 <h1>Categories</h1><a href="/addcategory">Add</a>
-    <div th:each="eachCategory:${thisUser.categories}">
+    <span th:each="eachCategory:${thisUser.categories}">
 
-       <h1> <span class="badge badge-pill redred" th:inline="text">[[${eachCategory}]]<a th:href="@{/delete/category/{category}(category=${eachCategory})}">X</a></span></h1>
-    </div>
+      <span class="badge badge-pill redred" th:inline="text">
+          [[${eachCategory}]]
+           <a class="whiteout" aria-label="Close" th:href="@{/delete/category/{category}(category=${eachCategory})}"><span aria-hidden="true"> &times;</span></a>
+       </span>
+
+
+    </span>
 
     <h1>Topics</h1><a href="/addtopic">Add</a>
     <div th:each="eachTopic:${thisUser.topics}">
