@@ -14,16 +14,18 @@
 </head>
 <body>
 
-<h1>Categories</h1><a href="/addcategory">Add</a>
-    <span th:each="eachCategory:${thisUser.categories}">
+<span class="h1 whiteout">Categories</span><a class="h3 whiteout" href="/addcategory" > Add</a>
+    <div>
+        <span th:each="eachCategory:${thisUser.categories}">
 
-      <span class="badge badge-pill redred" th:inline="text">
-          [[${eachCategory}]]
-           <a class="whiteout" aria-label="Close" th:href="@{/delete/category/{category}(category=${eachCategory})}"><span aria-hidden="true"> &times;</span></a>
-       </span>
+          <span class="badge badge-pill redred" th:inline="text">
+              [[${eachCategory}]]
+               <a class="whiteout" aria-label="Close" th:href="@{/delete/category/{category}(category=${eachCategory})}"><span aria-hidden="true"> &times;</span></a>
+           </span>
 
 
-    </span>
+        </span>
+    </div>
 
     <h1>Topics</h1><a href="/addtopic">Add</a>
     <div th:each="eachTopic:${thisUser.topics}">
