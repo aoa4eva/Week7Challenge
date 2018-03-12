@@ -43,6 +43,9 @@ public class MainController {
 
             if(thisUser.getCategories().size()>0)
                 System.out.println("User stories:"+theWire.getUserNewsDisplay(auth).toString());
+
+            model.addAttribute("myTopics",theWire.getUserTopicDisplay(auth));
+
         }
 
 

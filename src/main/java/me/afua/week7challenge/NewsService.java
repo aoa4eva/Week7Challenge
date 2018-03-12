@@ -58,8 +58,10 @@ public class NewsService {
     public News getTopicNews(String topic)
     {
         String from = "everything";
+        String topicurl = "https://newsapi.org/v2/"+from+"?q="+topic+"&apiKey="+apiKey;
+
         RestTemplate restTemplate = new RestTemplate();
-        News theNews = restTemplate.getForObject("https://newsapi.org/v2/"+from+"?country=us&q="+topic+"&apiKey="+apiKey,News.class);
+        News theNews = restTemplate.getForObject(topicurl,News.class);
         for(Article eachItem : theNews.getArticles())
         {
             eachItem.setCategory(topic);
