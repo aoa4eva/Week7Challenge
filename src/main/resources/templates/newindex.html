@@ -40,7 +40,7 @@
             <div th:each="eachStory:${topstories.articles}" class="single_left_coloum floatleft">
               <img th:src="${eachStory.urlToImage}==null?'assets/images/defaultpic.jpg':${eachStory.urlToImage}" alt="" />
               <h3 th:text="${eachStory.title}">Lorem ipsum dolor sit amet, consectetur</h3>
-              <p th:text="${#strings.abbreviate(eachStory.description,50)}"></p>
+              <!--<p th:text="${#strings.abbreviate(eachStory.description,50)}"></p>-->
               <a class="readmore" th:href="${eachStory.url}">read more</a>
             </div>
 
@@ -54,7 +54,7 @@
               <div th:each="eachStory:${theArticles.articles}" class="single_left_coloum floatleft">
                 <img th:src="${eachStory.urlToImage}==null?'assets/images/defaultpic.jpg':${eachStory.urlToImage}" alt="" />
                 <h3 th:text="${eachStory.title}">Lorem ipsum dolor sit amet, consectetur</h3>
-                <p th:text="${#strings.abbreviate(eachStory.description,50)}"></p>
+                <!--<p th:text="${#strings.abbreviate(eachStory.description,50)}"></p>-->
                 <a class="readmore" th:href="${eachStory.url}">read more</a>
               </div>
             </div>
@@ -68,7 +68,7 @@
                     <div th:each="eachStory:${theArticles.articles}" class="single_left_coloum floatleft">
                       <img th:src="${eachStory.urlToImage}==null?'assets/images/defaultpic.jpg':${eachStory.urlToImage}" alt="" />
                       <h3 th:text="${eachStory.title}">Lorem ipsum dolor sit amet, consectetur</h3>
-                      <p th:text="${#strings.abbreviate(eachStory.description,50)}"></p>
+                      <!--<p th:text="${#strings.abbreviate(eachStory.description,50)}"></p>-->
                       <a class="readmore" th:href="${eachStory.url}">read more</a>
                     </div>
             </div>

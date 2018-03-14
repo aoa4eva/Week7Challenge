@@ -156,7 +156,9 @@ public class MainController {
     public @ResponseBody String testJoy()
     {
 
-        return theWire.getJoyNews("http://www.myjoyonline.com/pages/rss/site_edition.xml").toString();
+        //https://cdn.ghanaweb.com/feed/newsfeed.xml
+        //return theWire.getGHNews("http://www.myjoyonline.com/pages/rss/site_edition.xml").toString();
+        return theWire.getGHNews("https://cdn.ghanaweb.com/feed/newsfeed.xml").toString();
     }
 
 }

@@ -134,7 +134,7 @@
 
           <div  th:each="eachStory:${topstories.articles}" class="single_left_coloum floatleft"> <img th:src="${eachStory.urlToImage}" th:alt="${eachStory.title}" />
             <h3 th:text="${eachStory.title}"></h3>
-            <p th:text="${#strings.abbreviate(eachStory.description,90)}"></p>
+            <!--<p th:text="${#strings.abbreviate(eachStory.description,90)}"></p>-->
             <a class="readmore" href="#">read more</a>
           </div>
 

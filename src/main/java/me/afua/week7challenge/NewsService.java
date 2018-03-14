@@ -29,11 +29,12 @@ public class NewsService {
     AppUserRepository userRepo;
 
 
-
     public News getStories(String from, String category, int returnResults)
     {
 
-        MyNewsDisplay fromJoy = getJoyNews("http://www.myjoyonline.com/pages/rss/site_edition.xml");
+        //Modify this to use a list of RSS feeds that a user has chosen
+
+        MyNewsDisplay fromJoy = getGHNews("http://citifmonline.com/feed/");
 
         News theNews;
 
@@ -122,16 +123,16 @@ public class NewsService {
         return myDisplay;
     }
 
-    public MyNewsDisplay getJoyNews(String joyNewsLink)
+    public MyNewsDisplay getGHNews(String ghNewsLink)
     {
-        MyNewsDisplay generalJoyNews = new MyNewsDisplay();
-        News joyNewsArticles = new News();
-        URL joyURL = null;
-        ArrayList <Article> joyArticles = new ArrayList<>();
+        MyNewsDisplay generalGHNews = new MyNewsDisplay();
+        News ghNewsArticles = new News();
+        URL ghNewsURL = null;
+        ArrayList <Article> ghArticles = new ArrayList<>();
         Article anArticle = null;
 
         try {
-            joyURL = new URL(joyNewsLink);
+            ghNewsURL = new URL(ghNewsLink);
         } catch (MalformedURLException e) {
             e.printStackTrace();
         }
@@ -139,7 +140,7 @@ public class NewsService {
         SyndFeedInput input = new SyndFeedInput();
         SyndFeed feed = new SyndFeedImpl();
         try {
-            feed = input.build(new com.rometools.rome.io.XmlReader(joyURL));
+            feed = input.build(new com.rometools.rome.io.XmlReader(ghNewsURL));
         } catch (FeedException e) {
             e.printStackTrace();
         } catch (IOException e) {
@@ -155,13 +156,13 @@ public class NewsService {
             anArticle.setPublishedAt(eachFeed.getPublishedDate().toString());
             anArticle.setUrl(eachFeed.getLink());
 
-            joyArticles.add(anArticle);
+            ghArticles.add(anArticle);
 
      }
-        joyNewsArticles.setArticles(joyArticles);
-        generalJoyNews.setCategory("general");
-        generalJoyNews.setCategorisedNews(joyNewsArticles);
-        return generalJoyNews;
+        ghNewsArticles.setArticles(ghArticles);
+        generalGHNews.setCategory("general");
+        generalGHNews.setCategorisedNews(ghNewsArticles);
+        return generalGHNews;
     }
 
 
