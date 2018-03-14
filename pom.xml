@@ -95,6 +95,19 @@
 			<version>3.0.2.RELEASE</version>
 		</dependency>
 
+		<!--XML MESSAGE CONVERSION-->
+		<dependency>
+			<groupId>com.fasterxml.jackson.dataformat</groupId>
+			<artifactId>jackson-dataformat-xml</artifactId>
+		</dependency>
+
+		<!--XML MESSAGE CONVERSION WITH ROME TOOLS-->
+		<dependency>
+			<groupId>com.rometools</groupId>
+			<artifactId>rome</artifactId>
+			<version>1.8.0</version>
+		</dependency>
+
 
 	</dependencies>
 

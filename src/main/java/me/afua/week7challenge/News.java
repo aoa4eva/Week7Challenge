@@ -21,6 +21,11 @@ public class News {
         this.articles = articles;
     }
 
+    public void addArticles(ArrayList<Article> toadd)
+    {
+        articles.addAll(toadd);
+    }
+
     @Override
     public String toString() {
         return "News{" +

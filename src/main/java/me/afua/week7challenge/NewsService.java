@@ -1,13 +1,22 @@
 package me.afua.week7challenge;
 
+import com.rometools.rome.feed.synd.SyndEntry;
+import com.rometools.rome.feed.synd.SyndFeed;
+import com.rometools.rome.feed.synd.SyndFeedImpl;
+import com.rometools.rome.io.FeedException;
+import com.rometools.rome.io.SyndFeedInput;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.http.converter.xml.MarshallingHttpMessageConverter;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;
 
+import java.io.IOException;
 import java.io.UncheckedIOException;
+import java.net.MalformedURLException;
+import java.net.URL;
 import java.util.ArrayList;
 
 @Service
@@ -23,7 +32,10 @@ public class NewsService {
 
     public News getStories(String from, String category, int returnResults)
     {
-        News theNews = new News();
+
+        MyNewsDisplay fromJoy = getJoyNews("http://www.myjoyonline.com/pages/rss/site_edition.xml");
+
+        News theNews;
 
         RestTemplate restTemplate = new RestTemplate();
         try {
@@ -41,6 +53,14 @@ public class NewsService {
                 eachItem.setCategory(category);
             }
         }
+
+        for (Article joyArticle: fromJoy.getCategorisedNews().getArticles())
+        {
+            joyArticle.setCategory(category);
+
+        }
+
+        theNews.addArticles(fromJoy.categorisedNews.getArticles());
         return theNews;
     }
 
@@ -100,6 +120,48 @@ public class NewsService {
             myDisplay.add(newItem);
         }
         return myDisplay;
+    }
+
+    public MyNewsDisplay getJoyNews(String joyNewsLink)
+    {
+        MyNewsDisplay generalJoyNews = new MyNewsDisplay();
+        News joyNewsArticles = new News();
+        URL joyURL = null;
+        ArrayList <Article> joyArticles = new ArrayList<>();
+        Article anArticle = null;
+
+        try {
+            joyURL = new URL(joyNewsLink);
+        } catch (MalformedURLException e) {
+            e.printStackTrace();
+        }
+
+        SyndFeedInput input = new SyndFeedInput();
+        SyndFeed feed = new SyndFeedImpl();
+        try {
+            feed = input.build(new com.rometools.rome.io.XmlReader(joyURL));
+        } catch (FeedException e) {
+            e.printStackTrace();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+        for(SyndEntry eachFeed:feed.getEntries())
+        {
+            anArticle = new Article();
+            anArticle.setCategory("general");
+            anArticle.setDescription(eachFeed.getDescription().getValue());
+            anArticle.setTitle(eachFeed.getTitle());
+            anArticle.setPublishedAt(eachFeed.getPublishedDate().toString());
+            anArticle.setUrl(eachFeed.getLink());
+
+            joyArticles.add(anArticle);
+
+     }
+        joyNewsArticles.setArticles(joyArticles);
+        generalJoyNews.setCategory("general");
+        generalJoyNews.setCategorisedNews(joyNewsArticles);
+        return generalJoyNews;
     }
 
 

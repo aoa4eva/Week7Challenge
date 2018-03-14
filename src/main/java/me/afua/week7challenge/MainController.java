@@ -1,8 +1,13 @@
 package me.afua.week7challenge;
 
+import com.rometools.rome.feed.synd.SyndEntry;
+import com.rometools.rome.feed.synd.SyndFeed;
+import com.rometools.rome.feed.synd.SyndFeedImpl;
+import com.rometools.rome.io.FeedException;
+import com.rometools.rome.io.SyndFeedInput;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.converter.xml.MarshallingHttpMessageConverter;
 import org.springframework.security.core.Authentication;
-import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -10,8 +15,13 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.client.RestTemplate;
 
 import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpSession;
+import javax.sql.rowset.spi.XmlReader;
+import java.io.IOException;
+import java.net.MalformedURLException;
+import java.net.URL;
 import java.util.ArrayList;
+import java.util.List;
+
 
 @Controller
 public class MainController {
@@ -31,7 +41,6 @@ public class MainController {
 
         AppUser thisUser = new AppUser();
         RestTemplate restTemplate = new RestTemplate();
-        System.out.println("Top General Stories"+theWire.getStories("top-headlines","general").toString());
         model.addAttribute("topstories",theWire.getStories("top-headlines","general"));
 
         if(auth!=null)
@@ -143,6 +152,11 @@ public class MainController {
     }
 
 
+    @GetMapping("/testjoy")
+    public @ResponseBody String testJoy()
+    {
 
+        return theWire.getJoyNews("http://www.myjoyonline.com/pages/rss/site_edition.xml").toString();
+    }
 
 }
